@@ -50,14 +50,19 @@
                      <div class="list-group">
                          
                          <a href="temperature_dashboard.php" class="list-group-item list-group-item-action">Temperature Table</a>
-                         <a href="graph.php" class="list-group-item list-group-item-action">Humidity Table</a>
-                         <a href="graph2.php" class="list-group-item list-group-item-action">Soil Mostrue Table</a>
+                         <a href="graph_humidity.php" class="list-group-item list-group-item-action">Humidity Table</a>
+                         <a href="#" class="list-group-item list-group-item-action">Soil Mostrue Table</a>
+                         <a href="Humidity_prograss" class="list-group-item list-group-item-action">Power Manage</a>
+                      
                       
                        
                    </div>
           </div>
           <div class="col-md-9">
+
 <div class="row">
+
+  <!-----firstlayer---------->
   <div class="col-md-3"> <br><br>
             <p  id="temperature">
                 <img src = 'temperature.png' height="60px" width="60px" style='vertical-align: middle' /> 00.00
@@ -75,23 +80,50 @@
     <p id="data">
 <?php
 
-include("graph2.php")
+include("graph_humidity.php")
  ?>
 
     </p>
   </div>
 </div>
+<!-----firstlayer---------->
 
+
+<!-----secondlayer---------->
+<div class="row"> 
+
+<div class="col-md-6">
+ 
+  <?php
+
+include("Humidity_prograss.php")
+ ?>
+
+</div>  
   
-          
-      
-        
-           </div>
+        <div class="col-md-3">
+  <p id="data2"><?php
+
+include("soil_graph.php")
+ ?>
+   
+ </p>
+  
+
+</div>  
+      </div>
+<!-----secondlayer---------->
+
+
+
+
+
+</div> <!---------endrow-------->
 
 
               
           
-</div>
+</div><!---------endcol9-------->
 
 </head>
 <body>
@@ -111,7 +143,7 @@ include("graph2.php")
                    var temper=(data['weather'][(Object.keys(data['weather']).length)-1]['temp']);
                    document.getElementById("temperature").innerHTML = "<img src = 'temperature.png' height=\"60px\" width=\"60px\" style='vertical-align: middle' />  " +temper;
                    document.getElementById("humidity").innerHTML = "<img src = 'humidity.png' height=\"60px\" width=\"60px\" style='vertical-align: middle' />  "+humid;
-          console.log(data['weather'][(Object.keys(data['weather']).length)-1]['temp']);
+         // console.log(data['weather'][(Object.keys(data['weather']).length)-1]['temp']);
         });
             
         }
@@ -119,7 +151,7 @@ function loadsoildata(){
         var url = "read_all_soil.php";
         $.getJSON(url, function(data) {
                     var val= data;
-                    console.log(data);
+                  //  console.log(data);
                    // console.log(val.weather[0].hum);
                   var soil=(data['soil'][(Object.keys(data['soil']).length)-1]['soil_value']);
                   // var temper=(data['weather'][(Object.keys(data['weather']).length)-1]['temp']);

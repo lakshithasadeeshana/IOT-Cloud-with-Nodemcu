@@ -19,18 +19,9 @@
 
 <!------------------------jquery------------------------>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> 
+ 
     
-   
-   <!-- If you are opening this page from a web hosting server machine, uncomment belwo line -->
-   <!--
-   <script type="text/javascript">
-    document.write([
-      "\<script src='",
-      ("https:" == document.location.protocol) ? "https://" : "http://",
-      "ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js' type='text/javascript'>\<\/script>" 
-    ].join(''));
-    </script>
+
 
 
 <!--------------------------jquery-------------------->
@@ -45,32 +36,26 @@
 
 </head>
 <body> 
+<div class="container"> 
+  <div class="row">
+<div class="col-md-6"> 
+<?php
+require('Humidity_MonthBasic.php')
 
+?>
+
+
+</div>
+<div class="col-md-6"> 
+<?php
+require('Humidity_DayBasic.php')
+
+?>
+
+</div>
+ </div>
+</div> 
 
 </body>
-<script>
-    window.onload = function() {
-            loaddata();
-           
-        };
-    function loaddata(){
-        var url = "read_all.php";
-        $.getJSON(url, function(data) {
-                    var val= data;
-                    console.log(val);
-                  //var humid=(data['weather'][(Object.keys(data['weather']).length)-1]['hum']);
-                  // var temper=(data['weather'][(Object.keys(data['weather']).length)-1]['temp']);
-                  // document.getElementById("temperature").innerHTML = "<img src = 'temperature.png' height=\"60px\" width=\"60px\" style='vertical-align: middle' />  " +temper;
-                  // document.getElementById("humidity").innerHTML = "<img src = 'humidity.png' height=\"60px\" width=\"60px\" style='vertical-align: middle' />  "+humid;
-          //console.log(data['weather'][(Object.keys(data['weather']).length)-1]['temp']);
-        });
-            
-        }
 
-
-
-
-        
-  
-  </script>
 </html>
