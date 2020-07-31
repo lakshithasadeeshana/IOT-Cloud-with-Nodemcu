@@ -44,7 +44,6 @@ require('Humidity_MonthBasic.php')
 
 ?>
 
-
 </div>
 <div class="col-md-6"> 
 <?php

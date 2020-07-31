@@ -15,21 +15,24 @@ include('connection.php');
           ['Day', 'Humidity'],
 
 <?php
-$query = "SELECT DayNAME(date_time) as dname,
-sum(hum) as total, count(hum) as humcount FROM weather GROUP BY MONTH(date_time)";
+$query = "SELECT  DAY(date_time) as dname,
+sum(hum) as total, AVG(hum) as humavg FROM weather GROUP BY DAY(date_time)";
 
 $result = $con->query($query);
+
+//echo($number_of_results);
 
 while($data = mysqli_fetch_array($result)){
 
 	$hum = $data['total'];
-	$count = $data['humcount'];
+	$avg = $data['humavg'];
 	$id = $data['dname'];
-
+    
 	?>
-	['<?php echo $id; ?>', <?php echo $hum/$count; ?> ],
+	['<?php echo $id; ?>', <?php echo $avg; ?> ],
 
 <?php
+
 }
 //echo ("," +$hum);
 
@@ -63,9 +66,12 @@ while($data = mysqli_fetch_array($result)){
   </thead>
   <tbody>
     <tr>
-      
+     
+
       <td><?php echo $id;?></td>
-      <td><?php echo $hum/$count;?></td>
+      <td><?php echo $avg;?></td>
+
+     
      
     </tr>
 

@@ -16,24 +16,22 @@ include('connection.php');
 
 <?php
 $query = "SELECT MONTHNAME(date_time) as mname,
-sum(hum) as total, count(hum) as humcount FROM weather GROUP BY MONTH(date_time)";
+AVG(hum) as monthavg FROM weather GROUP BY MONTH(date_time)";
 
 $result = $con->query($query);
 
 while($data = mysqli_fetch_array($result)){
 
-	$hum = $data['total'];
-	$count = $data['humcount'];
-	$id = $data['mname'];
+  
+  $mavg = $data['monthavg'];
+  $mname = $data['mname'];
+    
 
+  
 	?>
-	['<?php echo $id; ?>', <?php echo $hum/$count; ?> ],
+	['<?php echo $mname; ?>', <?php echo $mavg; ?> ],
 
-<?php
-}
-//echo ("," +$hum);
-
-?>
+<?php } ?>
 
         ]);
 
@@ -62,10 +60,16 @@ while($data = mysqli_fetch_array($result)){
     </tr>
   </thead>
   <tbody>
+    <?php while($row = $result ->fetch_object()): ?>
     <tr>
-      
-      <td><?php echo $id;?></td>
-      <td><?php echo $hum/$count;?></td>
+     
+
+      <td><?php echo $row->mname;?></td>
+
+      <td><?php echo $row->monthavg;?></td>
+
+
+    <?php endwhile; ?>
      
     </tr>
 

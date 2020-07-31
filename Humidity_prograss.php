@@ -12,62 +12,49 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="style.css" />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.0/circle-progress.min.js"></script>
   </head>
   <body>
     <!-- Container containing all the elements -->
     <div class="circleBar">
      
-      
+     
     
       
       <!-- Container for circular progress bar -->
       <div class="container ">
         <div class="row align-items-center">
-          <div class="col-md-6">
+         
             <div
               class="round"
-              data-value="0.65"
+              data-value="0.8"
               data-size="160"
               data-thickness="4"
             >
               <strong></strong>
             </div>
-          </div>
-          <div class="col-md-6" >
-            
-          </div>
+          
+          
         </div>
       </div>
    
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.0/circle-progress.min.js"></script>
+   
    
 
     <script>
        var  prograssvalue;
+
       window.onload = function() {
-            loaddata();
+            loaddatatoprogress();
             
         };
      
 
 
-function CircleBar(e) {
-  $(e)
-    .circleProgress({ fill: { color: "#00EAFF" } })
-    .on("circle-animation-progress", function(_event, _progress, stepValue) {
-      $(this)
-        .find("strong")
-        .text(String(parseInt(100 * prograssvalue)) + "%");
-    });
-}
-CircleBar(".round");
 
-
-
-
-    function loaddata(){
+    function loaddatatoprogress(){
         var url = "read_all.php";
         $.getJSON(url, function(data) {
                     var val= data;
@@ -80,6 +67,18 @@ CircleBar(".round");
         });
             
         }
+
+        function CircleBar(e) {
+           loaddatatoprogress();
+    $(e)
+     .circleProgress({ fill: { color: "#00EAFF" } })
+     .on("circle-animation-progress", function(_event, _progress, stepValue) {
+      $(this)
+        .find("strong")
+        .text(String(parseInt(100 * prograssvalue)) + "%");
+    });
+}
+CircleBar(".round");
 
          window.setInterval(function(){
         loaddata();
