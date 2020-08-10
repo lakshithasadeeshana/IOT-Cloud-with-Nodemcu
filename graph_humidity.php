@@ -36,7 +36,7 @@ while($data = mysqli_fetch_array($res)){
         ]);
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data, {width: 400, height: 240, legend: 'bottom', title: 'Humidity Chart'});
+        chart.draw(data, {width: 400, height: 240, legend: 'bottom', title: 'Humidity Chart',  backgroundColor: '#AEDAC3 ' });
       }
     </script>
   </head>

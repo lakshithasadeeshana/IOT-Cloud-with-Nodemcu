@@ -36,7 +36,7 @@ while($data = mysqli_fetch_array($res)){
         ]);
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
-        chart.draw(data, {width: 400, height: 240, legend: 'bottom', title: 'Soil Data Chart'});
+        chart.draw(data, {width: 400, height: 240, legend: 'bottom', title: 'Soil Data Chart'  , backgroundColor: '#AEDAC3 '});
       }
     </script>
   </head>

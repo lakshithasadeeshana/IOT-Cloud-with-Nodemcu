@@ -15,14 +15,14 @@ if (isset($_GET['temp']) && isset($_GET['hum'])) {
     // Include data base connect class
     
     $filepath = realpath (dirname(__FILE__));
-	require_once($filepath."/db_connect.php");
+	require_once($filepath."/connection.php");
 
  
     // Connecting to database 
-    $db = new DB_CONNECT();
+    
  
     // Fire SQL query to insert data in weather
-    $result = mysql_query("INSERT INTO weather(temp,hum) VALUES('$temp','$hum')");
+    $result = mysqli_query($con, "INSERT INTO weather(temp,hum) VALUES('$temp','$hum')");
  
     // Check for succesfull execution of query
     if ($result) {
